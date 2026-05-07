@@ -1,2 +1,2 @@
 # InkLogic
-This project implements an end-to-end Deep Learning pipeline designed to automate the verification and identification of signatures as either genuine or forged.
+This project implements a Machine Learning-based Book Recommender System that suggests books to users based on their interests. 
