@@ -1,4 +1,5 @@
 # 📚 InkLogic — ML-Based Book Recommender System
+This project implements a Machine Learning-based Book Recommender System that suggests books to users based on their interests. 
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.7%2B-blue?style=for-the-badge&logo=python&logoColor=white"/>
