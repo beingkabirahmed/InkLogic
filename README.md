@@ -1,268 +1,134 @@
-# 📚 InkLogic — ML-Based Book Recommender System
-This project implements a Machine Learning-based Book Recommender System that suggests books to users based on their interests. 
+# Project: InkLogic - Book Recommender System Using Machine Learning! | Collaborative Filtering Based
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.7%2B-blue?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white"/>
-  <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge"/>
-</p>
+<img src="demo/6.jpeg" alt="workflow" width="70%">
 
-<p align="center">
-  <b>Discover your next great read — powered by collaborative filtering on 1.1 million real reader ratings.</b>
-</p>
+Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.
 
----
+The purpose of a recommendation system basically is to search for content that would be interesting to an individual. Moreover, it involves a number of factors to create personalised lists of useful and interesting content specific to each user/individual. Recommendation systems are Artificial Intelligence based algorithms that skim through all possible options and create a customized list of items that are interesting and relevant to an individual. These results are based on their profile, search/browsing history, what other people with similar traits/demographics are watching, and how likely are you to watch those movies. This is achieved through predictive modeling and heuristics with the data available.
 
-## ✦ Overview
+# Types of Recommendation System :
 
-**InkLogic** is an end-to-end Machine Learning system that recommends books using **collaborative filtering**. Rather than analysing book content, it identifies readers with similar taste and surfaces books they loved — often uncovering cross-genre gems you'd never find on a bestseller list.
+### 1 ) Content Based :
 
-The system is built as a production-grade Streamlit web app, fully containerised with Docker, and follows a modular ML pipeline architecture.
+- Content-based systems, which use characteristic information and takes item attriubutes into consideration .
 
----
+- Twitter , Youtube .
 
-## 🗂️ Project Structure
+- Which music you are listening , what singer are you watching . Form embeddings for the features .
+	
+- User specific actions or similar items reccomendation .
+	
+- It will create a vector of it .
+	
+- These systems make recommendations using a user's item and profile features. They hypothesize that if a user was interested in an item in the past, they will once again be interested in it in the future
+	
+- One issue that arises is making obvious recommendations because of excessive specialization (user A is only interested in categories B, C, and D, and the system is not able to recommend items outside those categories, even though they could be interesting to them).
 
-```
-InkLogic/
-│
-├── books_recommender/               # Core Python package
-│   ├── components/
-│   │   ├── stage_00_data_ingestion.py
-│   │   ├── stage_01_data_validation.py
-│   │   ├── stage_02_data_transformation.py
-│   │   └── stage_03_model_trainer.py
-│   ├── config/
-│   │   └── configuration.py
-│   ├── constant/
-│   ├── entity/
-│   │   └── config_entity.py
-│   ├── exception/
-│   │   └── exception_handler.py
-│   ├── logger/
-│   │   └── log.py
-│   ├── pipeline/
-│   │   └── training_pipeline.py
-│   └── utils/
-│       └── util.py
-│
-├── artifacts/                       # Generated model artifacts (gitignored)
-├── config/
-│   └── config.yaml                  # Central pipeline configuration
-├── notebook/
-│   └── research.ipynb               # EDA & prototyping notebook
-├── templates/
-│   └── book_names.pkl               # Serialised book name list
-│
-├── app.py                           # Streamlit web application
-├── main.py                          # CLI training entry-point
-├── setup.py                         # Package setup
-├── requirements.txt
-├── Dockerfile
-├── .dockerignore
-└── .gitignore
-```
+### 2 ) Collaborative Based :
+		
+- Collaborative filtering systems, which are based on user-item interactions.
+	
+- Clusters of users with same ratings , similar users .
+	
+- Book recommendation , so use cluster mechanism .
+	
+- We take only one parameter , ratings or comments .
+	
+- In short, collaborative filtering systems are based on the assumption that if a user likes item A and another user likes the same item A as well as another item, item B, the first user could also be interested in the second item . 
+	
+- Issues are :
 
----
+	- User-Item nXn matrix , so computationally expensive .
 
-## ⚙️ ML Pipeline Workflow
+	- Only famous items will get reccomended .
 
-```
-config.yaml  →  entity  →  configuration.py  →  components  →  pipeline  →  app.py
-```
+	- New items might not get reccomended at all .   
 
-| Stage | Component | Description |
-|-------|-----------|-------------|
-| 00 | Data Ingestion | Loads BX-Books, BX-Users, BX-Ratings CSVs |
-| 01 | Data Validation | Validates schema, dtypes, and missing values |
-| 02 | Data Transformation | Builds user–book rating pivot matrix; filters sparse entries |
-| 03 | Model Trainer | Trains KNN collaborative filtering model; serialises artefacts |
+### 3 ) Hybrid Based :
+	
+- Hybrid systems, which combine both types of information with the aim of avoiding problems that are generated when working with just one kind.
 
----
+- Combination of both and used now a days .
 
-## 📊 Dataset
+- Uses : word2vec , embedding .           
 
-**Book-Crossing Dataset** — collected by Cai-Nicolas Ziegler from the Book-Crossing community.
+# About this project:
 
-| File | Records | Description |
-|------|---------|-------------|
-| `BX-Books.csv` | 271,360 | ISBN, title, author, year, publisher, cover URLs |
-| `BX-Users.csv` | 278,858 | User ID, location, age |
-| `BX-Book-Ratings.csv` | 1,149,780 | Explicit (1–10) and implicit (0) ratings |
+This is a streamlit web application that can recommend various kinds of similar books based on an user interest.
+here is a demo,
 
-> Source: [Kaggle — Book Recommendation Dataset](https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset)
 
----
 
-## 🤖 Algorithm
 
-InkLogic uses **K-Nearest Neighbours (KNN) Collaborative Filtering**:
+# Demo:
 
-1. A **user–book rating matrix** is constructed (rows = books, columns = users).
-2. Books with fewer than **50 ratings** are filtered to reduce noise.
-3. A **KNN model** (k = 5, cosine similarity) is fitted on the matrix.
-4. At inference time, the model finds the **5 nearest neighbour books** in rating-space to the query book and returns them as recommendations.
+<img src="demo/1.png" alt="workflow" width="70%">
 
-No book content (title, genre, description) is ever read — recommendations emerge purely from collective reader behaviour.
+<img src="demo/2.png" alt="workflow" width="70%">
 
----
+<img src="demo/3.png" alt="workflow" width="70%">
 
-## 🚀 How to Run Locally
 
-### Prerequisites
+# Dataset has been used:
 
-- Python 3.7+
-- pip / conda
+* [Dataset link](https://www.kaggle.com/ra4u12/bookrecommendation)
 
-### Step 1 — Clone the Repository
+# Concept used to build the model.pkl file : NearestNeighbors
+
+1 . Load the data
+	
+2 . Initialise the value of k
+
+3 . For getting the predicted class, iterate from 1 to total number of training data points
+
+4 . Calculate the distance between test data and each row of training data. Here we will use Euclidean distance as our distance metric since it’s the most popular method. 
+
+5 . Sort the calculated distances in ascending order based on distance values
+	
+6 . Get top k rows from the sorted array
+
+# How to run?
+### STEPS:
+
+Clone the repository
 
 ```bash
-git clone https://github.com/beingkabirahmed/InkLogic.git
-cd InkLogic
+https://github.com/beingkabirahmed/InkLogic.git
 ```
-
-### Step 2 — Create a Virtual Environment
+### STEP 01- Create a conda environment after opening the repository
 
 ```bash
-# Using conda
-conda create -n inklogic python=3.7.10 -y
-conda activate inklogic
-
-# Or using venv
-python -m venv venv
-source venv/bin/activate      # macOS / Linux
-venv\Scripts\activate         # Windows
+conda create -n books python=3.7.10 -y
 ```
 
-### Step 3 — Install Dependencies
+```bash
+conda activate books
+```
 
+
+### STEP 02- install the requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4 — Add the Dataset
-
-Place the three CSV files in the project root (or configure the path in `config/config.yaml`):
-
-```
-BX-Books.csv
-BX-Users.csv
-BX-Book-Ratings.csv
-```
-
-### Step 5 — Train the Model
 
 ```bash
-python main.py
+#run this file to generate the models
+
+Books Recommender.ipynb
 ```
 
-Or use the **Train Model** tab inside the Streamlit app.
-
-### Step 6 — Launch the App
-
+Now run,
 ```bash
 streamlit run app.py
 ```
 
-Open [http://localhost:8501](http://localhost:8501) in your browser.
-
----
-
-## 🐳 Docker Deployment
-
-### Build & Run Locally
 
 ```bash
-docker build -t inklogic:latest .
-docker run -d -p 8501:8501 inklogic:latest
-```
-
-### Deploy to AWS EC2
-
-```bash
-# On your EC2 instance (Ubuntu)
-sudo apt-get update -y && sudo apt-get upgrade -y
-
-# Install Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-sudo usermod -aG docker ubuntu
-newgrp docker
-
-# Clone and run
-git clone https://github.com/beingkabirahmed/InkLogic.git
-cd InkLogic
-
-docker build -t inklogic:latest .
-docker run -d -p 8501:8501 inklogic:latest
-```
-
-> ⚠️ Make sure port **8501** is open in your EC2 security group inbound rules.
-
-### Push to Docker Hub
-
-```bash
-docker login
-docker tag inklogic:latest <your-dockerhub-username>/inklogic:latest
-docker push <your-dockerhub-username>/inklogic:latest
-```
-
----
-
-## 🖥️ App Features
-
-| Feature | Description |
-|---------|-------------|
-| 🔍 **Book Search** | Searchable dropdown of all indexed titles |
-| ✨ **5 Recommendations** | Book covers + titles from collaborative filtering |
-| ⚙️ **In-app Training** | Trigger the full ML pipeline from the UI |
-| 📖 **How It Works** | Interactive explanation of the algorithm |
-| 📱 **Responsive Layout** | Clean grid that adapts to any screen width |
-
----
-
-## 📦 Requirements
+Author: Kabir Ahmed
+Data Scientist
+Email: beingkabirahmed
 
 ```
-scikit-learn
-pandas
-numpy
-PyYAML
-streamlit
-```
 
-Install with:
 
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add your feature'`)
-4. Push and open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👤 Author
-
-**Kabir Ahmed**  
-[GitHub](https://github.com/beingkabirahmed) · [LinkedIn](https://linkedin.com/in/beingkabirahmed)
-
----
-
-<p align="center">Built with ❤️ using Python, scikit-learn & Streamlit</p>

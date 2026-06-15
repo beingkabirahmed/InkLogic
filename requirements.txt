@@ -1,6 +1,6 @@
-scikit-learn 
-pandas 
-numpy
-PyYAML
+### dependency
 streamlit
--e .
+numpy
+
+### local packages -
+-e . 
