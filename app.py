@@ -1,6 +1,6 @@
 '''
-Author: Bappy Ahmed
-Email: ebingkabirahmed@gmail.com
+Author: Kabir Ahmed
+Email: bingkabirahmed@gmail.com
 Date: 2026-April-18
 '''
 
